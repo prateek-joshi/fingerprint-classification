@@ -7,6 +7,7 @@ NUM_CLASSES = len(os.listdir(IMAGES_PATH))
 EPOCHS = 10
 BATCH_SIZE = 32
 CHECKPOINT_PATH = os.path.join('model','checkpoints')
+IMAGE_FILE = os.path.join('model','model_img.png')
 
 # Create checkpoint path
 if not os.path.exists(CHECKPOINT_PATH):
@@ -63,7 +64,11 @@ model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
     save_freq=BATCH_SIZE,
     save_best_only=True)
 
+# Plot model architecture and save as image
+# keras.utils.plot_model(model, to_file=IMAGE_FILE, show_shapes=True, show_layer_names=True)
+
 print('Training started.')
+
 model.fit(
     train_generator,
     validation_data=validation_generator,
