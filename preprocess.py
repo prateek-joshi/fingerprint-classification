@@ -1,7 +1,5 @@
 import glob
 import os
-import cv2 as cv
-import numpy as np
 
 DATA_DIR = os.path.join('data','NISTSpecialDatabase4GrayScaleImagesofFIGS','NISTSpecialDatabase4GrayScaleImagesofFIGS','sd04','png_txt')
 BASE_DIR = os.path.join('data','fingerprints')
@@ -13,6 +11,7 @@ def get_class_name(file, folder):
         class_name = class_name_line[-1]
     
     return class_name
+
 
 def segregate_into_classes(png_files):
     filenames = []
@@ -30,6 +29,13 @@ def segregate_into_classes(png_files):
 
         os.rename(os.path.join(folder,file+'.png'), os.path.join(BASE_DIR,class_name,file+'.png'))
 
+# TODO
+def preprocess_images(images_path):
+    folders_list = os.listdir(images_path)
+
+    for folder in folders_list:
+        class_path = os.path.join(images_path, folder)
+    
 
 # create base directory if not exists
 if not os.path.exists(BASE_DIR):
@@ -49,3 +55,5 @@ for folder in folders_list:
     txt_files = glob.glob(os.path.join(folder_path,'*.txt'))
 
     segregate_into_classes(png_files)
+
+# preprocess_images(BASE_DIR)
