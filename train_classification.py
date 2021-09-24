@@ -60,6 +60,7 @@ model_checkpoint_callback = keras.callbacks.ModelCheckpoint(
     save_weights_only=True,
     monitor='val_accuracy',
     mode='max',
+    save_freq=BATCH_SIZE,
     save_best_only=True)
 
 print('Training started.')
