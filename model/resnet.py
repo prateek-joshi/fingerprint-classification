@@ -5,9 +5,9 @@ class Resnet18(keras.models.Model):
   def __init__(self, num_classes, **kwargs):
     super(Resnet18, self).__init__(**kwargs)
 
-    self.conv = keras.layers.Conv2D(64, (7,7), padding='same', stride=2)
+    self.conv = keras.layers.Conv2D(64, (7,7), padding='same', strides=(2,2))
     self.btch = keras.layers.BatchNormalization()
-    self.maxpool = keras.layers.MaxPool2D((3,3), stride=2)
+    self.maxpool = keras.layers.MaxPool2D((3,3), strides=(2,2))
 
     self.conv_block_1 = IdentityBlock(64, 3, name='idblock-1', enhanced=True)
     self.id_block_1 = [IdentityBlock(64, 3, name='idblock-2'),IdentityBlock(64, 3, name='idblock-3')]
