@@ -1,4 +1,4 @@
-from model.resnet import Resnet50
+from model.resnet import Resnet18
 from tensorflow import keras
 import os
 
@@ -25,7 +25,7 @@ datagen = keras.preprocessing.image.ImageDataGenerator(
 
 train_generator = datagen.flow_from_directory(
     directory=IMAGES_PATH,
-    target_size=(128, 128),
+    target_size=(224, 224),
     color_mode="grayscale",
     batch_size=BATCH_SIZE,
     class_mode="categorical",
@@ -48,7 +48,7 @@ validation_generator = datagen.flow_from_directory(
 STEP_SIZE_TRAIN = train_generator.n//train_generator.batch_size
 STEP_SIZE_VALID = validation_generator.n//validation_generator.batch_size
 
-model = Resnet50(num_classes=NUM_CLASSES)
+model = Resnet18(num_classes=NUM_CLASSES)
 optimizer = keras.optimizers.Adam(learning_rate=0.001)
 model.compile(
     optimizer=optimizer,
